@@ -1,0 +1,23 @@
+<form [formGroup]="eventsForm" action="" class="em-form">
+  <mat-grid-list cols="5" rowHeight="150px">
+    <mat-grid-title>
+      <div class="em-form__controls">
+        <input type="hidden" formControlName="$key" />
+        <mat-form-field>
+          <input formControlName="title" matInput placeholder="Title" />
+        </mat-form-field>
+        <mat-form-field>
+          <input formControlName="description" matInput placeholder="Description" />
+        </mat-form-field>
+        <mat-form-field>
+          <input formControlName="date" matInput [matDatepicker]="picker" placeholder="Choose a date" />
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+          <input formControlName="location" matInput placeholder="Location" />
+        </mat-form-field>
+      </div>
+    </mat-grid-title>
+  </mat-grid-list>
+</form>

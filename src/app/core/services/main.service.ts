@@ -11,10 +11,8 @@ export class MainService {
   constructor(private http: HttpClient) {}
 
   getAllEvents() {
-    return this.http.get(`http://localhost:3000/api/allEvents`).pipe(
+    return this.http.get(`${this.apiUrl}/allEvents`).pipe(
       map(data => {
-        console.log('DATAAAA');
-        console.log(data);
         return data;
       })
     );
