@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --proxy-config proxy.conf.json",
     "build-typescript": "tsc",
     "start-server": "npm run build-typescript && nodemon dist/out-tsc/index.js",
     "build": "ng build",

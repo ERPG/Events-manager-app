@@ -13,7 +13,7 @@ module.exports = (req, res) => {
     .limit(10)
     .then(event => {
       console.log('All events has been sent succesfully');
-      res.json(event);
+      return res.status(200).json(event);
     })
     .catch(err => res.status(500).json(err));
 };

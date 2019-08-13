@@ -15,9 +15,11 @@ import { NotificationsService } from './../../shared/services/notifications.serv
 })
 export class EventsTableComponent implements OnInit {
   public events: any;
-  public columnsToDisplay = ['Title', 'Description', 'Date', 'Location', 'Actions'];
+  public columnsToDisplay = ['Title', 'Description', 'Date', 'Location', 'Weather', 'Actions'];
   public searchKey: string;
   public dataSource: any;
+  public weather: any;
+  public iconSrc: string;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   constructor(
     private mainService: MainService,
@@ -29,19 +31,54 @@ export class EventsTableComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.fetch();
+    this.refreshData();
   }
 
   fetch() {
     return this.mainService.getAllEvents().subscribe(data => {
-      this.dataSource = new MatTableDataSource(data);
-      this.dataSource.sort = this.sort;
-      this.changeDetectorRefs.detectChanges();
+      this.events = data;
+      const newObject = [];
+      this.events.forEach(element => {
+        // Assign weather icon
+        this.mainService.getCityWeather(element.location).subscribe(
+          response => {
+            const responseData = response;
+            if (responseData && responseData['weather']) {
+              this.iconSrc = 'http://openweathermap.org/img/w/' + responseData['weather'][0].icon + '.png';
+              this.loadTableData(newObject, element, this.iconSrc);
+            } else {
+              return 'invalid city';
+            }
+          },
+          err => {
+            const notFound = 'http://rocaldent.com.ve/rocaldent/public/images/image-not-found.png';
+            this.loadTableData(newObject, element, notFound);
+          }
+        );
+      });
     });
   }
+
+  loadTableData(newObject: any, element, url) {
+    const elementAsign = {
+      ...element,
+      weatherIcon: url
+    };
+    // Modify Data Object
+    newObject.push(elementAsign);
+    this.events = newObject;
+    // Set table source
+    this.dataSource = new MatTableDataSource(this.events);
+    this.dataSource.sort = this.sort;
+  }
+
   searchClear() {
     this.searchKey = '';
     this.applyFilter();
+  }
+
+  refreshData() {
+    this.fetch();
   }
 
   applyFilter() {
@@ -53,6 +90,9 @@ export class EventsTableComponent implements OnInit {
     dialogconfig.disableClose = true;
     dialogconfig.autoFocus = true;
     this.dialog.open(EventsFormComponent, dialogconfig);
+    this.dialog.afterAllClosed.subscribe(data => {
+      this.refreshData();
+    });
   }
 
   onDelete(event) {
@@ -65,12 +105,10 @@ export class EventsTableComponent implements OnInit {
         if (res) {
           this.mainService.deleteEvent(id).subscribe(
             data => {
-              console.log('Data DELETED');
-              console.log(data);
               this.notificationsService.warn('!Deleted Successfully');
+              this.refreshData();
             },
             error => {
-              console.log('ERROR');
               console.log(error);
             }
           );
@@ -84,5 +122,6 @@ export class EventsTableComponent implements OnInit {
     dialogconfig.disableClose = true;
     dialogconfig.autoFocus = true;
     this.dialog.open(EventsFormComponent, dialogconfig);
+    this.refreshData();
   }
 }

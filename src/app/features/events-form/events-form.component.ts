@@ -4,6 +4,7 @@ import { FormGroup } from '@angular/forms';
 import { MainService } from 'src/app/core/services/main.service';
 import { NotificationsService } from './../../shared/services/notifications.service';
 import { MatDialog } from '@angular/material';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-events-form',
@@ -16,16 +17,20 @@ export class EventsFormComponent implements OnInit {
     private formService: EventsFormService,
     private mainService: MainService,
     private notification: NotificationsService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    public dialogRef: MatDialogRef<EventsFormComponent>
   ) {}
 
   ngOnInit() {
     this.eventsForm = this.formService.eventsForm;
   }
 
+  closeDialog() {
+    this.dialogRef.close();
+  }
+
   onClear() {
     this.eventsForm.reset();
-    this.notification.success(':: Submitted successfully');
   }
 
   onSubmit() {

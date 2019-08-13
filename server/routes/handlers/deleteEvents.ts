@@ -11,8 +11,7 @@ module.exports = (req, res) => {
   EventModel.findByIdAndRemove(id)
     .then(event => {
       console.log('Event has been removed succesfully');
-      res.json(event);
-      return res.status(200);
+      return res.status(200).json(event);
     })
     .catch(err => res.status(500).json(err));
 };

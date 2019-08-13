@@ -1,4 +1,5 @@
 <form [formGroup]="eventsForm" action="" class="em-form" (submit)="onSubmit()">
+  <mat-icon id="close-form-icon" (click)="closeDialog()">close</mat-icon>
   <mat-grid-list cols="2" rowHeight="250px">
     <mat-grid-title>
       <div class="em-form__controls">

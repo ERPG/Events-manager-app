@@ -27,6 +27,10 @@
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Location</th>
     <td mat-cell *matCellDef="let events">{{ events.location }}</td>
   </ng-container>
+  <ng-container matColumnDef="Weather">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Weather</th>
+    <td mat-cell *matCellDef="let events"><img [src]="events.weatherIcon" style=" width: 50px; height: 50px; " /></td>
+  </ng-container>
   <ng-container matColumnDef="Actions">
     <th mat-header-cell *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let row">

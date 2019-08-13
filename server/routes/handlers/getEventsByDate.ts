@@ -11,7 +11,7 @@ module.exports = (req, res) => {
   EventModel.find({ date })
     .then(event => {
       console.log('Event by date has been sent succesfully');
-      res.json(event);
+      return res.status(200).json(event);
     })
     .catch(err => res.status(500).json(err));
 };
