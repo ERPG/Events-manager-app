@@ -89,6 +89,7 @@ export class EventsTableComponent implements OnInit {
     const dialogconfig = new MatDialogConfig();
     dialogconfig.disableClose = true;
     dialogconfig.autoFocus = true;
+    dialogconfig.minWidth = '40%';
     this.dialog.open(EventsFormComponent, dialogconfig);
     this.dialog.afterAllClosed.subscribe(data => {
       this.refreshData();

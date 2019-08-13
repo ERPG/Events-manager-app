@@ -1,0 +1,13 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+/* notification */
+.mat-snack-bar-container {
+  background: #5cb85c !important;
+  color: #fff;
+}
+
+snack-bar-container.em-notification simple-snack-bar {
+  font-size: 18px !important;
+  font-weight: bold;
+}

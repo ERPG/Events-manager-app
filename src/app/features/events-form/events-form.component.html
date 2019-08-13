@@ -1,7 +1,7 @@
 <form [formGroup]="eventsForm" action="" class="em-form" (submit)="onSubmit()">
   <mat-icon id="close-form-icon" (click)="closeDialog()">close</mat-icon>
-  <mat-grid-list cols="2" rowHeight="250px">
-    <mat-grid-title>
+  <mat-grid-list cols="1" rowHeight="300px">
+    <mat-grid-tile>
       <div class="em-form__controls">
         <!-- <input type="hidden" formControlName="_id" /> -->
         <mat-form-field>
@@ -26,6 +26,6 @@
           <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
         </div>
       </div>
-    </mat-grid-title>
+    </mat-grid-tile>
   </mat-grid-list>
 </form>

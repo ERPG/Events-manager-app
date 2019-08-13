@@ -1,3 +1,5 @@
+@import 'base/_breakpoints.scss';
+
 table {
   width: 100%;
 }
@@ -5,14 +7,9 @@ table {
 .hide {
   display: none;
 }
-
-mat-footer-row mat-footer-cell {
-  justify-content: center;
-  font-style: italic;
-}
 /* filter controls */
 .em-em__container {
-  margin: 10px;
+  margin: 20px;
 }
 .search-form-field {
   width: 60%;
@@ -20,17 +17,25 @@ mat-footer-row mat-footer-cell {
   padding: 5px 10px;
   background-color: #f5f5f5;
   border-radius: 5px;
+  height: 35px;
 }
-.search-form-field div.mat-form-field-underline {
-  display: none;
+@media (max-width: $screen-sm-min) {
+  .mat-form-field {
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+  }
+  .mat-raised-button {
+    display: block;
+    margin: 0 auto;
+  }
 }
-.search-form-field div.mat-form-field-infix {
-  border-top: 0px;
+
+::ng-deep .mat-form-field-flex > .mat-form-field-infix {
+  border: 0 !important;
 }
-.search-form-field div.mat-form-field-wrapper {
-  padding-bottom: 0px;
-}
-.search-form-field div.mat-form-field-suffix button {
-  height: 32px;
-  width: 32px;
+
+::ng-deep mat-footer-row mat-footer-cell {
+  justify-content: center;
+  font-style: italic;
 }

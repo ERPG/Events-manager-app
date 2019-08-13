@@ -1,10 +1,40 @@
-/* notification */
-.mat-snack-bar-container {
-  background: #5cb85c !important;
-  color: #fff;
+@import 'base/_breakpoints.scss';
+
+::ng-deep mat-dialog-container {
+  position: relative;
+
+  form {
+    text-align: center;
+  }
+
+  #close-form-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: 15px;
+    margin-right: 15px;
+    z-index: 2;
+    cursor: pointer;
+  }
+
+  .cdk-overlay-pane {
+    width: 30% !important;
+    text-align: center;
+  }
 }
 
-snack-bar-container.em-notification simple-snack-bar {
-  font-size: 18px !important;
-  font-weight: bold;
+button {
+  margin-right: 15px;
+}
+
+@media (max-width: $screen-sm-min) {
+  .mat-form-field {
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+  }
+  .mat-raised-button {
+    display: block;
+    margin: 0 auto;
+  }
 }
