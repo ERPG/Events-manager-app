@@ -9,8 +9,8 @@ const getEventsByLocation = require('./handlers/getEventsByLocation');
 const getAllEvents = require('./handlers/getAllEvents');
 
 router.post('/addEvent', addEvent);
-router.delete('/delete/:id', deleteEvent);
-router.put('/update/:id', updateEvent);
+router.delete('/deleteEvent/:id', deleteEvent);
+router.put('/updateEvent', updateEvent);
 router.get('/getEventBylocation', getEventsByLocation);
 router.get('/getEventBydate', getEventsByDate);
 router.get('/allEvents', getAllEvents);

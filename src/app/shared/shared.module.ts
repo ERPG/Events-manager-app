@@ -13,9 +13,12 @@ import { EventsFormService } from 'src/app/shared/services/events-form.service';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { DialogService } from 'src/app/shared/services/dialog.service';
 
 @NgModule({
-  declarations: [],
+  declarations: [ConfirmDialogComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -30,9 +33,10 @@ import { MatNativeDateModule } from '@angular/material';
     MatToolbarModule,
     MatGridListModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSnackBarModule
   ],
-  providers: [EventsFormService],
+  providers: [EventsFormService, DialogService],
   exports: [
     MatButtonModule,
     MatFormFieldModule,
@@ -46,7 +50,10 @@ import { MatNativeDateModule } from '@angular/material';
     MatGridListModule,
     MatDatepickerModule,
     EventsFormService,
-    MatNativeDateModule
+    DialogService,
+    MatNativeDateModule,
+    MatSnackBarModule,
+    ConfirmDialogComponent
   ]
 })
 export class SharedModule {}

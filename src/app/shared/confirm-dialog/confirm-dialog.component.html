@@ -1,0 +1,8 @@
+<div>
+  <div class="em-confim-dialog__content">
+    <mat-icon id="close-icon" (click)="closeDialog()">close</mat-icon>
+    <span class="content-span full-width">Are you shure to delete this event!?</span>
+  </div>
+  <button mat-flat-button id="no-button" [mat-dialog-close]="false">NO</button>
+  <button mat-flat-button id="yes-button" [mat-dialog-close]="true">YES</button>
+</div>

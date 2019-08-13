@@ -11,8 +11,11 @@ module.exports = (req, res) => {
 
   event
     .save()
-    .then(products => res.redirect('/'))
+    .then(products => {
+      res.redirect('/');
+      return res.status(200);
+    })
     .catch(err => {
-      throw err;
+      res.status(500).json(err);
     });
 };

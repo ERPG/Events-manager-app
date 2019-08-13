@@ -1,10 +1,12 @@
-import { IEvent } from './../../../../server/types/types';
-import { MainService } from 'src/app/core/services/main.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { EventsFormComponent } from 'src/app/features/events-form/events-form.component';
+import { EventsFormService } from 'src/app/shared/services/events-form.service';
+import { MainService } from 'src/app/core/services/main.service';
+import { DialogService } from 'src/app/shared/services/dialog.service';
+import { NotificationsService } from './../../shared/services/notifications.service';
 
 @Component({
   selector: 'app-events-table',
@@ -17,7 +19,14 @@ export class EventsTableComponent implements OnInit {
   public searchKey: string;
   public dataSource: any;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-  constructor(private mainService: MainService, private dialog: MatDialog) {}
+  constructor(
+    private mainService: MainService,
+    private dialog: MatDialog,
+    private eventsService: EventsFormService,
+    private notificationsService: NotificationsService,
+    private confirmDialogService: DialogService,
+    private changeDetectorRefs: ChangeDetectorRef
+  ) {}
 
   ngOnInit() {
     this.fetch();
@@ -25,10 +34,9 @@ export class EventsTableComponent implements OnInit {
 
   fetch() {
     return this.mainService.getAllEvents().subscribe(data => {
-      this.events = data;
-      this.dataSource = new MatTableDataSource(this.events);
+      this.dataSource = new MatTableDataSource(data);
       this.dataSource.sort = this.sort;
-      return this.events;
+      this.changeDetectorRefs.detectChanges();
     });
   }
   searchClear() {
@@ -44,6 +52,37 @@ export class EventsTableComponent implements OnInit {
     const dialogconfig = new MatDialogConfig();
     dialogconfig.disableClose = true;
     dialogconfig.autoFocus = true;
-    this.dialog.open(EventsFormComponent);
+    this.dialog.open(EventsFormComponent, dialogconfig);
+  }
+
+  onDelete(event) {
+    const id = event._id;
+
+    this.confirmDialogService
+      .openConfirmDialog()
+      .afterClosed()
+      .subscribe(res => {
+        if (res) {
+          this.mainService.deleteEvent(id).subscribe(
+            data => {
+              console.log('Data DELETED');
+              console.log(data);
+              this.notificationsService.warn('!Deleted Successfully');
+            },
+            error => {
+              console.log('ERROR');
+              console.log(error);
+            }
+          );
+        }
+      });
+  }
+
+  onEdit(event) {
+    this.eventsService.populateForm(event);
+    const dialogconfig = new MatDialogConfig();
+    dialogconfig.disableClose = true;
+    dialogconfig.autoFocus = true;
+    this.dialog.open(EventsFormComponent, dialogconfig);
   }
 }
