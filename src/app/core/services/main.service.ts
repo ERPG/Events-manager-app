@@ -10,9 +10,16 @@ import { throwError } from 'rxjs/internal/observable/throwError';
 })
 export class MainService {
   private apiUrl = 'http://localhost:3000/api';
-  // private API_KEY = process.env.WEATHER_API_KEY;
-  private wheatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=[CITY]&appid=6dfd7a80c8a2c086107651924b855a39`;
+  private wheatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=[CITY]&appid=[KEY]`;
   constructor(private http: HttpClient) {}
+
+  getPrivateKey() {
+    return this.http.get(`${this.apiUrl}/private`).pipe(
+      map(data => {
+        return data;
+      }, catchError(this.handleError))
+    );
+  }
 
   getAllEvents() {
     return this.http.get(`${this.apiUrl}/allEvents`).pipe(
