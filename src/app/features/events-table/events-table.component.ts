@@ -20,6 +20,7 @@ export class EventsTableComponent implements OnInit {
   public dataSource: any;
   public weather: any;
   public iconSrc: string;
+  public response: string;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   constructor(
     private mainService: MainService,
@@ -34,8 +35,20 @@ export class EventsTableComponent implements OnInit {
     this.refreshData();
   }
 
+  timeOut(data) {
+    setTimeout(() => {
+      if (!data) {
+        this.response = 'No data';
+      }
+    }, 5);
+  }
+
   fetch() {
     return this.mainService.getAllEvents().subscribe(data => {
+      this.response = '';
+      if (!data) {
+        this.timeOut(data);
+      }
       this.events = data;
       const newObject = [];
       this.events.forEach(element => {

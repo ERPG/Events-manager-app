@@ -40,7 +40,8 @@ table {
   border: 0 !important;
 }
 
-::ng-deep mat-footer-row mat-footer-cell {
+::ng-deep mat-footer-row,
+mat-footer-cell {
   justify-content: center;
   font-style: italic;
 }
