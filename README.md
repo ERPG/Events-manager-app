@@ -31,8 +31,9 @@ After set node version run
 yarn install
 ```
 
-After installing all packages you just need to launch Angular dev server. Since you need the api for the requests, we need to launch the node server that receive
-this requests.
+After installing all packages, since you need the api for the requests, we need to launch the node server that receive this requests.
+
+The server use a **MongoDB** database, I suggest go to the [Documentation](https://docs.mongodb.com/manual/installation/) and setup this before launch the server.
 
 To launch node server, first compile your typescript files, make shure you have typescript installed globally.
 
@@ -42,7 +43,7 @@ To install Typescript global you can do
 yarn add --global typescript
 ```
 
-After that, to compile server files just do
+After that, to compile server files just
 
 ```
 tsc
@@ -61,6 +62,8 @@ nodemon index.js
 ```
 
 To check if server is running, navigate to `http://localhost:3000/`
+
+The app also use a Weather API. I also suggest go to the [openSeatherMap docs](https://openweathermap.org/), register and get an API KEY. This api key will be place in a **.env** file with the name of _WEATHER_API_KEY_.
 
 To launch Angular server
 
@@ -86,6 +89,7 @@ yarn run test
 - [Express](https://expressjs.com/es/) - node Infraestructure
 - [Mongoose](https://mongoosejs.com/docs/) - Schema base solution
 - [MongoDB](https://www.mongodb.com/) - DataBase
+- [OpenWeatherMap](https://openweathermap.org/) - DataBase
 
 ## Further help
 
