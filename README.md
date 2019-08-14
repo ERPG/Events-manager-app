@@ -63,7 +63,7 @@ nodemon index.js
 
 To check if server is running, navigate to `http://localhost:3000/`
 
-The app also use a Weather API. I also suggest go to the [openSeatherMap docs](https://openweathermap.org/), register and get an API KEY. This api key will be place in a **.env** file with the name of _WEATHER_API_KEY_.
+The app also use a Weather API. I also suggest go to the [openWeatherMap docs](https://openweathermap.org/), register and get an API KEY. This api key will be place in a **.env** file with the name of _WEATHER_API_KEY_.
 
 To launch Angular server
 
