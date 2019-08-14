@@ -89,7 +89,7 @@ yarn run test
 - [Express](https://expressjs.com/es/) - node Infraestructure
 - [Mongoose](https://mongoosejs.com/docs/) - Schema base solution
 - [MongoDB](https://www.mongodb.com/) - DataBase
-- [OpenWeatherMap](https://openweathermap.org/) - DataBase
+- [OpenWeatherMap](https://openweathermap.org/) - Weather API
 
 ## Further help
 
