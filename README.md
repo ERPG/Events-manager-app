@@ -9,7 +9,7 @@ Events app to manage your daily tasks.
 
 This steps will get you through the setup process of installing and usage of the project.
 
-### Project contributors guide
+### Project installation guide
 
 To ensure the best compatibility you may need node version of `v10.16`. We would recommend to use NVM (Node Version Manager) for this. You can find it [Here](https://github.com/creationix/nvm).
 
