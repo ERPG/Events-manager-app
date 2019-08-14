@@ -1,7 +1,8 @@
 @import 'base/_breakpoints.scss';
 
 table {
-  width: 100%;
+  width: 90%;
+  margin: 0 auto;
 }
 
 .hide {
@@ -10,6 +11,10 @@ table {
 /* filter controls */
 .em-em__container {
   margin: 20px;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 15px;
+  width: 90%;
 }
 .search-form-field {
   width: 60%;

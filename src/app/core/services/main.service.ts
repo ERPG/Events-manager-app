@@ -11,14 +11,18 @@ import { throwError } from 'rxjs/internal/observable/throwError';
 export class MainService {
   private apiUrl = 'http://localhost:3000/api';
   private wheatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=[CITY]&appid=[KEY]`;
+  private apiKey: any;
   constructor(private http: HttpClient) {}
 
-  getPrivateKey() {
-    return this.http.get(`${this.apiUrl}/private`).pipe(
-      map(data => {
-        return data;
-      }, catchError(this.handleError))
-    );
+  getPrivateKey(): Promise<any> | undefined {
+    return this.http
+      .get(`${this.apiUrl}/private`)
+      .pipe(
+        map(data => {
+          return data;
+        }, catchError(this.handleError))
+      )
+      .toPromise();
   }
 
   getAllEvents() {
@@ -53,13 +57,17 @@ export class MainService {
   getEventsByDate(date: string) {}
   getEventsByLocation(location: string) {}
 
-  getCityWeather(city: string) {
-    const fillUrl = this.wheatherApiUrl.replace('[CITY]', city);
-    return this.http.get(fillUrl).pipe(
-      map(data => {
-        return data;
-      })
-    );
+  async getCityWeather(city: string) {
+    this.apiKey = await this.getPrivateKey();
+    const fillUrl = this.wheatherApiUrl.replace('[CITY]', city).replace('[KEY]', this.apiKey);
+    return this.http
+      .get(fillUrl)
+      .pipe(
+        map(res => {
+          return res;
+        })
+      )
+      .toPromise();
   }
 
   private handleError(error: HttpErrorResponse) {

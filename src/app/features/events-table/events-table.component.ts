@@ -40,7 +40,7 @@ export class EventsTableComponent implements OnInit {
       const newObject = [];
       this.events.forEach(element => {
         // Assign weather icon
-        this.mainService.getCityWeather(element.location).subscribe(
+        this.mainService.getCityWeather(element.location).then(
           response => {
             const responseData = response;
             if (responseData && responseData['weather']) {
@@ -62,6 +62,7 @@ export class EventsTableComponent implements OnInit {
   loadTableData(newObject: any, element, url) {
     const elementAsign = {
       ...element,
+      date: new Date(element.date).toLocaleDateString(),
       weatherIcon: url
     };
     // Modify Data Object
@@ -122,6 +123,7 @@ export class EventsTableComponent implements OnInit {
     const dialogconfig = new MatDialogConfig();
     dialogconfig.disableClose = true;
     dialogconfig.autoFocus = true;
+    dialogconfig.minWidth = '40%';
     this.dialog.open(EventsFormComponent, dialogconfig);
     this.refreshData();
   }

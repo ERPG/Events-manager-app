@@ -2,7 +2,7 @@ import * as mongoose from 'mongoose';
 import { IEvent } from '../types/types';
 
 const collection = 'events';
-const now = new Date().toLocaleDateString();
+const now = new Date();
 
 const EventSchema: mongoose.Schema = new mongoose.Schema(
   {

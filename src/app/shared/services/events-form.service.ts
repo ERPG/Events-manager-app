@@ -15,14 +15,16 @@ export class EventsFormService {
   });
 
   populateForm(event) {
+    console.log(event);
     const { title, description, date, location, _id } = event;
     const isoDate: Date = new Date(date);
-    this.eventsForm.setValue({
+    const eventM = {
       title,
       description,
       date: isoDate,
       location,
       _id
-    });
+    };
+    this.eventsForm.setValue(eventM);
   }
 }

@@ -41,10 +41,10 @@ export class EventsFormComponent implements OnInit {
 
       if (_id) {
         console.log('UPDATE!');
-        eventToSubmit = { title, description, date: date.toLocaleDateString(), location, _id };
+        eventToSubmit = { title, description, date, location, _id };
         this.updateEvent(eventToSubmit);
       } else {
-        eventToSubmit = { title, description, date: date.toLocaleDateString(), location };
+        eventToSubmit = { title, description, date, location };
         console.log('NEW!');
         this.addEvent(eventToSubmit);
       }
