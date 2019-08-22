@@ -90,6 +90,7 @@ yarn run test
 - [Mongoose](https://mongoosejs.com/docs/) - Schema base solution
 - [MongoDB](https://www.mongodb.com/) - DataBase
 - [OpenWeatherMap](https://openweathermap.org/) - Weather API
+- [Angular Material](https://material.angular.io/) - Material Design components for Angular
 
 ## Further help
 
