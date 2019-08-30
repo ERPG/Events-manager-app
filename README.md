@@ -1,5 +1,5 @@
 ![Angular](https://cdn-images-1.medium.com/max/1200/1*nbJ41jD1-r2Oe6FsLjKaOg.png) ![NodeJS](https://codeandunicorns.com/wp-content/uploads/2017/11/node-express.png)
-![MongoDB](https://openebs.io/assets/images/workloads/mongodb-n.png)
+![MongoDB](http://lineadecodigo.com/wp-content/uploads/2014/04/mongodb.png)
 
 # Events Manager
 
